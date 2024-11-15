@@ -3,21 +3,23 @@ import triangle
 
 a, b, c = map(int, input().split())
 
-exist = triangle.isTriangleExist(a, b, c)
+trangl = triangle.Triangle(a, b, c)
+
+exist = trangl.isTriangleExist()
 if exist:
     print("Треугольник существует")
 if not exist:
     print("Треугольник не существует")
     sys.exit()
 
-triangle.printSides(a, b, c)
+trangl.printSides()
 
-perimeter = triangle.calculatePerimeter(a, b, c)
+perimeter = trangl.calculatePerimeter()
 print(f"Периметр равен: {perimeter}")
 
-square = triangle.calculateSquare(a, b, c)
+square = trangl.calculateSquare()
 print(f"Площадь равна: {square}")
 
-heights = triangle.calculateHeights(a, b, c)
+heights = trangl.calculateHeights()
 print(f"Высоты равны: {heights}")
 

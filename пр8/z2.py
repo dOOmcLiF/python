@@ -1,25 +1,23 @@
-from Currency import Rate  
+from Currency import Rate
 
-print("Получение полной информации о курсе доллара")
-curr = Rate('full')  
-print(curr.usd())  
+rate_value = Rate('value')
+rate_full = Rate('full')
+rate_name = Rate('name')
 
-print("Получение изменения курса доллара")
-curr = Rate('value')  
-print(curr.usd(diff=False))
+print(rate_value.usd())
+print(rate_name.eur())
 
-print("Получение информации о произвольной валюте")
-print(curr.get_currency_info('EUR'))
+print(rate_value.usd(diff=True))
 
-print("Получение валют с максимальной и минимальной стоимостью")
-max_currency, min_currency = curr.max_min_currency()  
-print(max_currency)  
-print(min_currency)  
+print(rate_name.get_currency('GBP'))
 
-print("Получение курса доллара за 2 недели")
-usd_rates = curr.get_usd_rate_over_weeks(2)  
-print(usd_rates)  
+print(rate_name.get_max_currency())
+print(rate_name.get_min_currency())
 
-print("Получение курса евро за 3 недели")
-eur_rates = curr.get_currency_rate_over_weeks('EUR', 3)  
-print(eur_rates)
+usd_history = rate_value.get_usd_history(weeks=2)
+for date, value in usd_history.items():
+    print(f"Курс доллара на {date}: {value}")
+
+eur_history = rate_value.get_currency_history('EUR', weeks=1)
+for date, value in eur_history.items():
+    print(f"Курс евро на {date}: {value}")
