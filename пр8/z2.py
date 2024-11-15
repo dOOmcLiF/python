@@ -1,22 +1,25 @@
-from Currency import Rate
+from Currency import Rate  
 
-# Получаем курс доллара
-curr_rate = Rate('value')
-print(curr_rate.usd())
+print("Получение полной информации о курсе доллара")
+curr = Rate('full')  
+print(curr.usd())  
 
-# Получаем изменение курса доллара по сравнению с прошлым значением
-curr_diff = Rate('value')
-print(curr_diff.usd(diff=True))
+print("Получение изменения курса доллара")
+curr = Rate('value')  
+print(curr.usd(diff=False))
 
-# Получаем курс евро
-curr_rate_eur = Rate('value')
-print(curr_rate_eur.eur())
+print("Получение информации о произвольной валюте")
+print(curr.get_currency_info('EUR'))
 
-# Получаем изменение курса евро по сравнению с прошлым значением
-curr_diff_eur = Rate('value')
-print(curr_diff_eur.eur(diff=True))
+print("Получение валют с максимальной и минимальной стоимостью")
+max_currency, min_currency = curr.max_min_currency()  
+print(max_currency)  
+print(min_currency)  
 
-r = Rate()
+print("Получение курса доллара за 2 недели")
+usd_rates = curr.get_usd_rate_over_weeks(2)  
+print(usd_rates)  
 
-arm_currency_info = r.currency_info('AMD')
-print(arm_currency_info)
+print("Получение курса евро за 3 недели")
+eur_rates = curr.get_currency_rate_over_weeks('EUR', 3)  
+print(eur_rates)
